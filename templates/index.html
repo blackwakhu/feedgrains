@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed grains</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css">
+</head>
+<body>
+    <div>
+        <h1>feed grains</h1>
+        <form action="/predict" method="post">
+            <label for="sc_group_id">Description</label><br>
+            <input type="radio" name="sc_group_id" id="" value="1">prices
+            <input type="radio" name="sc_group_id" id="" value="2">Supply and use
+            <input type="radio" name="sc_group_id" id="" value="6">Quantities fed
+            <input type="radio" name="sc_group_id" id="" value="3">exports and imports<br>
+            <label for="sc_groupcommod_id">group commodity</label>
+            <select name="sc_groupcommod_id" id="">
+                {% for i in groupcommod %}
+                    <option value="{{groupcommod_id[groupcommod.index(i)]}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+            <label for="sc_geography_id">Place of origin</label>
+            <select name="sc_geography_id" id="">
+                {% for i in groupgeography %}
+                    <option value="{{groupgeography_id[groupgeography.index(i)]}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+            <label for="sortOrder">sort order</label>
+            <select name="sortOrder" id="">
+                {% for i in sort_order %}
+                    <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+            <label for="sc_commodity_id">commodity</label>
+            <select name="sc_commodity_id" id="">
+                {% for i in commod %}
+                    <option value="{{commod_id[commod.index(i)]}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+            <label for="sc_attribute_id">attribute</label>
+            <select name="sc_attribute_id" id="">
+                {% for i in attribute %}
+                    <option value="{{attribute_id[attribute.index(i)]}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+            <label for="sc_unit_id">unit</label>
+            <select name="sc_unit_id" id="">
+                {% for i in unit %}
+                    <option value="{{unit_id[unit.index(i)]}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+            <label for="year_id">year</label>
+            <input type="number" name="year_id" id="year" placeholder="year" min="1866"><br>
+            <label for="sc_frequency_id">frequency</label><br>
+            <input type="radio" name="sc_frequency_id" id="" value="2">Quarterly
+            <input type="radio" name="sc_frequency_id" id="" value="1">Monthly
+            <input type="radio" name="sc_frequency_id" id="" value="3">Yearly<br>
+            <label for="timeperiod_id">timeperiod</label>
+            <select name="timeperiod_id" id="">
+                {% for i in timep %}
+                    <option value="{{timep_id[timep.index(i)]}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+            <input type="submit" name="" id="" value="predict" class="btn btn-primary btn-block">
+            {{prediction}}
+        </form>
+    
+    </div>
+</body>
+</html>
